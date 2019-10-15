@@ -28,7 +28,25 @@
                         挂单
                     </el-tab-pane>
                     <el-tab-pane label="外卖">
-                        外卖
+                        <el-table :data="tableData" border style="width: 100%" >
+                            <el-table-column prop="goodsName" label="商品"  ></el-table-column>
+                            <el-table-column prop="count" label="量" width="50"></el-table-column>
+                            <el-table-column prop="price" label="金额" width="70"></el-table-column>
+                            <el-table-column  label="操作" width="100" fixed="right">
+                                <template scope="scope">
+                                    <el-button type="text" size="small" @click="delSingleGoods(scope.row)">删除</el-button>
+                                    <el-button type="text" size="small" @click="addOrderList(scope.row)">增加</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <div class="totalDiv">
+                            数量：{{totalCount}}件 &nbsp;&nbsp;&nbsp; 金额：{{totalMoney}}元
+                        </div>
+                        <div class="div-btn">
+                            <el-button type="warning" >挂单</el-button>
+                            <el-button type="danger" @click="delAllGoods()">删除</el-button>
+                            <el-button type="success" @click="checkout()" >结账</el-button>
+                        </div>
                     </el-tab-pane>
                 </el-tabs>
             </el-col>
